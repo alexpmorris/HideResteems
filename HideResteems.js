@@ -7,7 +7,7 @@
 // @match        https://steemit.com/*
 // @grant        none
 // @require https://code.jquery.com/jquery-1.12.4.min.js
-// @require https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @require https://greasyfork.org/scripts/6250-waitforkeyelements/code/waitForKeyElements.js?version=23756
 // ==/UserScript==
 
 (function() {
