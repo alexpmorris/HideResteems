@@ -37,7 +37,7 @@
             function ButtonClickAction (zEvent) {
                 if (!isHiding) {
                     $("#rsBtnImg").attr('src', 'https://steemitimages.com/DQmaRcPxCKNV45aPVaWMbBkP7WvJatgkKqtih7ZCfVsLs4r/button_show-resteems.png');
-                    $(".PostSummary__reblogged_by").parent('').hide();
+                    $(".PostSummary__reblogged_by").filter(function () {return ($(".UserNames",this)[0] == null);}).parent('').hide();
                 } else {
                     $("#rsBtnImg").attr('src', 'https://steemitimages.com/DQmQYXHkLv4A3h8pZ1ntQM1FTTT6knt5EaVUo7hdj2nNAcR/button_hide-resteems.png');
                     $(".PostSummary__reblogged_by").parent('').show();
