@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide ReSteems
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.11
 // @description  Button to Toggle ReSTEEMs from a User's STEEMIT.com Profile Page
 // @author       @alexpmorris
 // @match        https://steemit.com/*
