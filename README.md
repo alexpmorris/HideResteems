@@ -1,5 +1,5 @@
 # HideResteems TamperMonkey Script
-Adds Button to Toggle ReSTEEMs from a User's STEEMIT.com Profile Page
+Adds Button to Toggle ReSTEEMs from a User's STEEMIT.com Profile and Feed Page
 
 For more information on how to use this script and why it was created, visit:
 
