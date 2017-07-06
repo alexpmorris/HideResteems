@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide ReSteems
 // @namespace    http://tampermonkey.net/
-// @version      0.11
+// @version      0.12
 // @description  Button to Toggle ReSTEEMs from a User's STEEMIT.com Profile Page
 // @author       @alexpmorris
 // @match        https://steemit.com/*
@@ -21,7 +21,7 @@
 
         var validUrl = document.URL.replace("https://steemit.com/","");
 
-        if ((userDiv != null) && (validUrl.startsWith("@")) && (validUrl.indexOf("/")==-1)) {
+        if ((userDiv !== null) && (validUrl.startsWith("@")) && ((validUrl.indexOf("/")==-1) || (validUrl.endsWith("/feed"))) ) {
 
             isHiding = false;
             var zNode       = document.createElement ('div');
@@ -37,7 +37,8 @@
             function ButtonClickAction (zEvent) {
                 if (!isHiding) {
                     $("#rsBtnImg").attr('src', 'https://steemitimages.com/DQmaRcPxCKNV45aPVaWMbBkP7WvJatgkKqtih7ZCfVsLs4r/button_show-resteems.png');
-                    $(".PostSummary__reblogged_by").filter(function () {return ($(".UserNames",this)[0] == null);}).parent('').hide();
+                    if (validUrl.endsWith("/feed")) $(".PostSummary__reblogged_by").parent('').hide(); else
+                        $(".PostSummary__reblogged_by").filter(function () {return ($(".UserNames",this)[0] == null);}).parent('').hide();
                 } else {
                     $("#rsBtnImg").attr('src', 'https://steemitimages.com/DQmQYXHkLv4A3h8pZ1ntQM1FTTT6knt5EaVUo7hdj2nNAcR/button_hide-resteems.png');
                     $(".PostSummary__reblogged_by").parent('').show();
