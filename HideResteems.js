@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide ReSteems
 // @namespace    http://tampermonkey.net/
-// @version      0.12
+// @version      0.13
 // @description  Button to Toggle ReSTEEMs from a User's steemit.com or golos.io Profile and Feed Pages
 // @author       @alexpmorris
 // @match        https://steemit.com/*
