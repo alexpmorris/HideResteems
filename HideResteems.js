@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide ReSteems
 // @namespace    https://steemit.com/@alexpmorris
-// @version      0.14
+// @version      0.15
 // @description  Button to Toggle ReSTEEMs from a User's steemit.com or golos.io Profile and Feed Pages
 // @author       @alexpmorris
 // @source       https://github.com/alexpmorris/HideResteems
@@ -73,10 +73,10 @@
 
         var userDiv = $("#posts_list");
 
-        if ((userDiv !== null) && (validUrl.startsWith("@")) && ((validUrl.indexOf("/")==-1) || (validUrl.endsWith("/feed"))) ) {
+        if ((userDiv.length) && (validUrl.startsWith("@")) && ((validUrl.indexOf("/")==-1) || (validUrl.endsWith("/feed"))) ) {
 
             if (!$("#rsButton").length) {
-                var divData = '<button id="rsButton" type="button" style="width:120px; margin-bottom:5px; outline:none;"><img id="rsBtnImg" src="'+hideResteemsBtnSrc+'"></button>';
+                var divData = '<button id="rsButton" type="button" style="width:120px; margin-bottom:10px; outline:none;"><img id="rsBtnImg" src="'+hideResteemsBtnSrc+'"></button>';
                 $(userDiv).prepend(divData);
                 var elem = $("#rsButton");
                 $(elem).click(function (e) { toggleResteemsClick(e); });
@@ -85,7 +85,9 @@
                 if (isHiding) hidePosts();
             }
 
-        } else if (userDiv === null) $("#rsButton").remove();
+        } else {
+            if (!$("#post_overlay").length) $("#rsButton").remove();
+        }
     }
 
     function hidePosts() {
