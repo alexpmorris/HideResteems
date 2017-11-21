@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide ReSteems
 // @namespace    https://steemit.com/@alexpmorris
-// @version      0.15
+// @version      0.16
 // @description  Button to Toggle ReSTEEMs from a User's steemit.com or golos.io Profile and Feed Pages
 // @author       @alexpmorris
 // @source       https://github.com/alexpmorris/HideResteems
@@ -25,6 +25,7 @@
     var hideResteemsBtnSrc = "";
     var validUrl = "";
     var totPosts = 0;
+    var targetTag = "";
 
     function triggerRefresh(cnt) {
         if ((cnt===null) || (cnt !== totPosts)) {
@@ -58,8 +59,13 @@
 
     function addReSteemToggleBtn() {
         validUrl = document.URL;
-        if (validUrl.startsWith("https://s")) validUrl = validUrl.replace("https://steemit.com/",""); else
+        if (validUrl.startsWith("https://s")) {
+            validUrl = validUrl.replace("https://steemit.com/","");
+            targetTag = ".articles__resteem";
+        } else {
             validUrl = validUrl.replace("https://golos.io/","");
+            targetTag = ".PostSummary__reblogged_by";
+        }
 
         //language support for buttons
         var lang = localStorage.getItem("language");
@@ -91,8 +97,8 @@
     }
 
     function hidePosts() {
-        if (validUrl.endsWith("/feed")) $(".PostSummary__reblogged_by").parent('').hide(); else
-            $(".PostSummary__reblogged_by").filter(function () {return ($(".UserNames",this)[0] == null);}).parent('').hide();
+        if (validUrl.endsWith("/feed")) $(targetTag).parent('').hide(); else
+            $(targetTag).filter(function () {return ($(".UserNames",this)[0] == null);}).parent('').hide();
     }
     
     function toggleResteemsClick(e) {
@@ -101,7 +107,7 @@
             hidePosts();
         } else {
             $("#rsBtnImg").attr('src', hideResteemsBtnSrc);
-            $(".PostSummary__reblogged_by").parent('').show();
+            $(targetTag).parent('').show();
         }
         isHiding = !isHiding;
     }
